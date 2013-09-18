@@ -51,7 +51,7 @@ module ShowFor
     def block_from_symbol(attribute_name, options)
       attribute = @object.send(attribute_name)
       case attribute
-      when Array, Hash
+      when Array, Hash, ActiveRecord::Associations::CollectionProxy
         lambda { |element| element.send(options[:value]) }
       else
         lambda { attribute.send(options[:value]) }
